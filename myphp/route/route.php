@@ -52,7 +52,7 @@ function router(array $routearray, array $purl){
 	}
 }
 
-/*Test*/
+/*Test*
 $ROOT = "";
 $p = purl("https://www.cvlearning.net/path/to/page/?k=v&x=y#penis");
 foreach($p as $k=>$v){

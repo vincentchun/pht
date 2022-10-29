@@ -1,7 +1,18 @@
 <?php
-include "./letsphp/front/html/html.php";
-include "./letsphp/front/html/tags.php";
-echo "Hello world!";
+include "./myphp/route/route.php";
+include "./myphp/front/html/html.php";
+include "./myphp/front/html/tags.php";
+
+$ROOT = $_SERVER['DOCUMENT_ROOT'];
+$purl = purl($_SERVER['REQUEST_URI']);
+
+$routearray = [
+	"/" => "/home/home.php"
+];
+
+$connected = router($routearray, $purl);
+echo $connected;
+/*echo "Hello world!";
 echo $myname;
 
 //$hed = new El("h1",array("title"=>"head"),array("Heading"));

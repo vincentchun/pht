@@ -49,6 +49,10 @@ class El {
 	}
 }
 
+function el(string $t, array $a=[], $c=[]){
+	return new El($t,$a,$c);
+}
+
 // String Element Array: Render array of HTML elements to string
 function strela(array $a){
 	$str = "";
@@ -64,10 +68,19 @@ function strela(array $a){
 	return $str;
 }
 
-function el(string $t, array $a=[], $c=[]){
-	return new El($t,$a,$c);
+function render($in){
+	if ($in instanceof El){
+		return $in->str();
+	} elseif (is_array($in)){
+		return strela($in);
+	} else {
+		return $in;
+	}
 }
 
+function output($in){
+	echo render($in);
+}
 /**
 $bod = new El("body",[],[]);
 $hed = new El("h1",["title"=>"heading"],["Heading"]);
