@@ -3,6 +3,11 @@
 
 $doctype = "<!DOCTYPE html>";
 
+// Comment
+function comment(string $content){
+	return "<!--" . $content . "-->";
+}
+
 // Document
 function h_html(array $attr=[], $c=[]){
 	return new El("html", $attr, $c);

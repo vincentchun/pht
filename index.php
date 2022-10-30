@@ -4,13 +4,12 @@ include "./myphp/front/html/html.php";
 include "./myphp/front/html/tags.php";
 
 $ROOT = $_SERVER['DOCUMENT_ROOT'];
-$purl = purl($_SERVER['REQUEST_URI']);
 
 $routearray = [
 	"/" => "/home/home.php"
 ];
 
-$connected = router($routearray, $purl);
+$connected = router($routearray);
 echo $connected;
 /*echo "Hello world!";
 echo $myname;
