@@ -1,7 +1,12 @@
 <?php
 
 // Request URL components
-function rProtocol() {
+
+function rScheme() {
+ return $_SERVER['REQUEST_SCHEME']."://";
+}
+
+function rProtocol() {// Redundant - equivalent to rScheme
  return ((!empty($_SERVER['HTTPS']) && $_SERVER['HTT[S'] != 'off') || $_SERVER['SERVER_PORT']==443) ? "https://" : "http://";
 }
 
@@ -18,7 +23,7 @@ function rQuery() {
 }
 
 function rURLstring() {
- return rProtocol().rHost().rURI();
+ return rScheme().rHost().rURI();
 }
 
 function rURLparsed() {
@@ -43,4 +48,28 @@ function rQueryx() {
  return $q;
 }
 
+function test_route_url_php() {
+ echo "<br>rScheme():<br>";
+ echo rScheme();
+ echo "<br>rProtocol():<br>";
+ echo rProtocol();
+ echo "<br>rHost():<br>";
+ echo rHost();
+ echo "<br>rURI():<br>";
+ echo rURI();
+ echo "<br>rQuery():<br>";
+ echo rQuery();
+ echo "<br>rURLstring():<br>";
+ echo rURLstring();
+ echo "<br>(rURLparsed()):<br>";
+ echo print_r(rURLparsed());
+ echo "<br>rPathx():<br>";
+ echo print_r(rPathx());
+ echo "<br>rQueryx():<br>";
+ echo print_r(rQueryx());
+}
+
+function test_server_comment() {
+ echo "<!--".print_r($_SERVER, true)."-->";
+}
 ?>
