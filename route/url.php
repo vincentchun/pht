@@ -49,23 +49,23 @@ function rQueryx() {
 }
 
 function test_route_url_php() {
- echo "<br>rScheme():<br>";
+ echo "\nrScheme():\n";
  echo rScheme();
- echo "<br>rProtocol():<br>";
+ echo "\nrProtocol():\n";
  echo rProtocol();
- echo "<br>rHost():<br>";
+ echo "\nrHost():\n";
  echo rHost();
- echo "<br>rURI():<br>";
+ echo "\nrURI():\n";
  echo rURI();
- echo "<br>rQuery():<br>";
+ echo "\nrQuery():\n";
  echo rQuery();
- echo "<br>rURLstring():<br>";
+ echo "\nrURLstring():\n";
  echo rURLstring();
- echo "<br>(rURLparsed()):<br>";
+ echo "\n(rURLparsed()):\n";
  echo print_r(rURLparsed(), true);
- echo "<br>rPathx():<br>";
+ echo "\nrPathx():\n";
  echo print_r(rPathx(), true);
- echo "<br>rQueryx():<br>";
+ echo "\nrQueryx():\n";
  echo print_r(rQueryx(), true);
 }
 
