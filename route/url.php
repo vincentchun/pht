@@ -36,7 +36,7 @@ function rPathx() {
 
 function rQueryx() {
  $q = [];
- $parts = explode("&", rURLparsed()['query']);
+ $parts = explode("&", rQuery());//rURLparsed()['query']);
  foreach($parts as $part) {
   if ($part != "") {
    $partx = explode("=", $part);
@@ -62,11 +62,11 @@ function test_route_url_php() {
  echo "<br>rURLstring():<br>";
  echo rURLstring();
  echo "<br>(rURLparsed()):<br>";
- echo print_r(rURLparsed());
+ echo print_r(rURLparsed(), true);
  echo "<br>rPathx():<br>";
- echo print_r(rPathx());
+ echo print_r(rPathx(), true);
  echo "<br>rQueryx():<br>";
- echo print_r(rQueryx());
+ echo print_r(rQueryx(), true);
 }
 
 function test_server_comment() {
