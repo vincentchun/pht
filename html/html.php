@@ -1,20 +1,23 @@
 <?php
-// HTML Element class
-//$copyright = "&copy; Vincent Chun, CV Learning, 2022";
-// HTML Attributes as associative arrays, eg: $attr = ["id"=>"main", "class"=>"center"];
-function attrstr($at){
-	$astr = "";
+$copyright = "&copy; Vincent G. Chun, 2022";
+
+// HTML Attributes as associative arrays, eg: 
+// $attr = ["id"=>"main", "class"=>"center"];
+
+// Convert associative array into attribute string:
+function atstr($at){
+	$str = "";
 	foreach($at as $k => $v){
-		$astr = $astr . " " . $k . "=" . '"' . $v . '"';
+		$str = $str . " " . $k . "=" . '"' . $v . '"';
 	}
-	return $astr;
+	return $str;
 }
 
 // HTML Elements
-class El {
-	public $t;
-	public $a;
-	public $c;
+class E {
+	public $t; // Element tag
+	public $a; // Attributes
+	public $c; // Content - dynamic type: can either be an array of E, string, or other primitive
 	
 	function __construct(string $t, array $a=[], $c=[]){
 		$this->t = $t;
@@ -49,18 +52,19 @@ class El {
 	}
 }
 
+// Function to create html element
 function el(string $t, array $a=[], $c=[]){
 	return new El($t,$a,$c);
 }
 
 // String Element Array: Render array of HTML elements to string
-function strela(array $a){
+function strea(array $a){
 	$str = "";
 	foreach($a as $v){
 		if ($v instanceof El){
 			$str = $str . $v->str();
 		} elseif (is_array($v)){
-			$str = $str . strela($v);
+			$str = $str . strea($v);
 		} else {
 			$str = $str . $v;
 		}
@@ -72,7 +76,7 @@ function render($in){
 	if ($in instanceof El){
 		return $in->str();
 	} elseif (is_array($in)){
-		return strela($in);
+		return strea($in);
 	} else {
 		return $in;
 	}

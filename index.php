@@ -1,7 +1,7 @@
 <?php
-include "./myphp/route/route.php";
-include "./myphp/front/html/html.php";
-include "./myphp/front/html/tags.php";
+include "./route/route.php";
+include "./html/html.php";
+include "./html/tags.php";
 
 $ROOT = $_SERVER['DOCUMENT_ROOT'];
 
