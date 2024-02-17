@@ -1,8 +1,10 @@
 <?php
-include "./route/route.php";
-include "./html/html.php";
+include "./route/url.php";
+//include "./html/html.php";
 include "./html/tags.php";
-
+test_route_url_php();
+test_server_comment();
+/*
 $ROOT = $_SERVER['DOCUMENT_ROOT'];
 
 $routearray = [

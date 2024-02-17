@@ -1,5 +1,12 @@
 <?php
-$copyright = "&copy; Vincent G. Chun, 2022";
+
+// Check if this script is included
+function pht_html_included(bool $p=true) {
+ if ($p) {
+  echo "<!--PHT_HTML_IS_INCLUDED-->";
+ }
+ return true;
+}
 
 // HTML Attributes as associative arrays, eg: 
 // $attr = ["id"=>"main", "class"=>"center"];
@@ -12,14 +19,57 @@ function atstr($at){
 	}
 	return $str;
 }
-
 // HTML Elements
 class E {
+ public $t;
+ public $a;
+ public $s;
+ public $c;
+ function __construct($t="", $a=[], $s="", $c=[]){
+  $this->t = $t;
+  $this->a = $a;
+  $this->s = $s;
+  $this->c = $c;
+ }
+ function __toString(){
+  if ($this->t=="") {
+   $str = $this->s;
+   foreach ($this->c as $e){
+    $str = $str.$e->__toString();
+   }
+  }
+  elseif (in_array($this->t, array("area", "base", "br", "embed", "hr", "img", "input", "link", "meta", "source", "track"))){
+   $str = "<" . $this->t . atstr($this->a) . ">";
+  } else {
+   $str = "<" . $this->t . atstr($this->a) . ">";
+   $str = $str.$this->s;
+   foreach ($this->c as $e){
+    $str = $str.$e->__toString();
+   }
+   $str = $str . "</" . $this->t . ">";
+  }
+  return $str;
+ }
+	function add(...$els){
+		array_push($this->c, ...$els);
+	}
+	function pre(...$els){
+		array_unshift($this->c, ...$els);
+	}
+	function at(array $toset){
+		$this->a = array_merge($this->a, $toset);
+	}
+}
+
+
+/*/ HTML Elements
+class E {
 	public $t; // Element tag
-	public $a; // Attributes
+ public $a; // Attributes
+// public $s; // string (or primitive)
 	public $c; // Content - dynamic type: can either be an array of E, string, or other primitive
 	
-	function __construct(string $t, array $a=[], $c=[]){
+	function __construct(string $t="", array $a=[], $c=[]){
 		$this->t = $t;
 		$this->a = $a;
 		if (is_array($c)){
@@ -31,12 +81,12 @@ class E {
 	
 	function str() {
 		if  ($this->t == ""){
-			$stres = strela($this->c);
+			$stres = strea($this->c);
 		}
 		elseif (in_array($this->t, array("area", "base", "br", "embed", "hr", "img", "input", "link", "meta", "source", "track"))){
 			$stres = "<" . $this->t . attrstr($this->a) . ">";
 		} else {
-			$stres = "<" . $this->t . attrstr($this->a) . ">" . strela($this->c) . "</" . $this->t . ">";
+			$stres = "<" . $this->t . attrstr($this->a) . ">" . strea($this->c) . "</" . $this->t . ">";
 		}
 		return $stres;
 	}
@@ -53,8 +103,8 @@ class E {
 }
 
 // Function to create html element
-function el(string $t, array $a=[], $c=[]){
-	return new El($t,$a,$c);
+function e(string $t="", array $a=[], $c=[]){
+	return new E($t,$a,$c);
 }
 
 // String Element Array: Render array of HTML elements to string
@@ -85,6 +135,8 @@ function render($in){
 function output($in){
 	echo render($in);
 }
+/**/
+include_once "tags.php";
 /**
 $bod = new El("body",[],[]);
 $hed = new El("h1",["title"=>"heading"],["Heading"]);

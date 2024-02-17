@@ -1,6 +1,13 @@
 <?php
 // Dependencies: html.php
-include "./html.php";
+//include "./html.php";
+// Check if this script is included
+function pht_html_tags_included(bool $p=true) {
+ if ($p) {
+  echo "<!--PHT_HTML_TAGS_IS_INCLUDED-->";
+ }
+ return true;
+}
 
 $doctype = "<!DOCTYPE html>";
 
