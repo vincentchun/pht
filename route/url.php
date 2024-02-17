@@ -49,27 +49,28 @@ function rQueryx() {
 }
 
 function test_route_url_php() {
- echo "\nrScheme():\n";
- echo rScheme();
- echo "\nrProtocol():\n";
- echo rProtocol();
- echo "\nrHost():\n";
- echo rHost();
- echo "\nrURI():\n";
- echo rURI();
- echo "\nrQuery():\n";
- echo rQuery();
- echo "\nrURLstring():\n";
- echo rURLstring();
- echo "\n(rURLparsed()):\n";
- echo print_r(rURLparsed(), true);
- echo "\nrPathx():\n";
- echo print_r(rPathx(), true);
- echo "\nrQueryx():\n";
- echo print_r(rQueryx(), true);
+ $ts = "\nrScheme():\n";
+ $ts = $ts.rScheme();
+ $ts = $ts."\nrProtocol():\n";
+ $ts = $ts.rProtocol();
+ $ts = $ts."\nrHost():\n";
+ $ts = $ts.rHost();
+ $ts = $ts."\nrURI():\n";
+ $ts = $ts.rURI();
+ $ts = $ts."\nrQuery():\n";
+ $ts = $ts.rQuery();
+ $ts = $ts."\nrURLstring():\n";
+ $ts = $ts.rURLstring();
+ $ts = $ts."\n(rURLparsed()):\n";
+ $ts = $ts.print_r(rURLparsed(), true);
+ $ts = $ts."\nrPathx():\n";
+ $ts = $ts.print_r(rPathx(), true);
+ $ts = $ts."\nrQueryx():\n";
+ $ts = $ts.print_r(rQueryx(), true);
+ echo "\n<!--".$ts."-->\n";
 }
 
 function test_server_comment() {
- echo "<!--".print_r($_SERVER, true)."-->";
+ echo "\n<!--\n".print_r($_SERVER, true)."\n-->\n";
 }
 ?>
